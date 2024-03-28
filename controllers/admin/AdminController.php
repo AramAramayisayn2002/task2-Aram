@@ -1,4 +1,5 @@
 <?php
+
 class AdminController extends Controller
 {
     public function index()
@@ -15,10 +16,12 @@ class AdminController extends Controller
             $this->viewRender('admin/index');
             exit;
         }
+
         $id = $_SESSION['admin']['id'];
         $select = $this->modelRender('Posts')->select()->where('id_admin', '=', $id)->order('id')->desc()->execute()->fetchAssocs();
         $this->viewRender('admin/dashboard', $select);
     }
+
     public function login()
     {
         if (isset($_POST['log_button'])) {
@@ -31,7 +34,7 @@ class AdminController extends Controller
                 if ($result->numRows() == 1) {
                     $select = $result->fetchAssoc();
                     $_SESSION['admin'] = $select;
-                    if(isset($_POST['remember_me'])) {
+                    if (isset($_POST['remember_me'])) {
                         setcookie('login', $_POST['login'], time() + (24 * 3600));
                         setcookie('password', $_POST['password'], time() + (24 * 3600));
                     }
@@ -49,6 +52,7 @@ class AdminController extends Controller
             redirect('admin/admin');
         }
     }
+
     public function logout()
     {
         if (isset($_POST['logout'])) {

@@ -1,17 +1,25 @@
 <?php
+
 class DashboardController extends Controller
 {
     public function index()
     {
-        if(isset($_SESSION['admin'])) {
+        if (isset($_SESSION['admin'])) {
             $id = $_SESSION['admin']['id'];
-            $select = $this->modelRender('Posts')->select()->where('id_admin', '=', $id)->order('id')->desc()->execute()->fetchAssocs();
+            $select = $this->modelRender('Posts')
+                ->select()
+                ->where('id_admin', '=', $id)
+                ->order('id')
+                ->desc()
+                ->execute()
+                ->fetchAssocs();
             $this->viewRender('admin/Dashboard', $select);
         } else {
             redirect('error');
         }
     }
-    public function createpost()
+
+    public function createPost()
     {
         if (isset($_POST['createPost'])) {
             if (!empty($_POST['title']) && !empty($_POST['text'])) {
@@ -20,10 +28,10 @@ class DashboardController extends Controller
                 $array['title'] = htmlspecialchars($_POST['title']);
                 $array['text'] = htmlspecialchars($_POST['text']);
                 $insert = $this->modelRender('Posts')->insert($array)->execute();
-                if($insert->queryResult) {
+                if ($insert->queryResult) {
                     redirect('admin/Dashboard');
                 } else {
-                    $_SESSION['error_msg'] = 'Failied!';
+                    $_SESSION['error_msg'] = 'Failed!';
                     redirect('admin/Dashboard/create');
                 }
                 unset($_POST);
@@ -35,32 +43,38 @@ class DashboardController extends Controller
             redirect('error');
         }
     }
+
     public function create()
     {
         $this->viewRender('admin/CreatePost');
     }
+
     public function view($id)
     {
         $select = $this->modelRender('Posts')->select()->where('id', '=', $id)->execute()->fetchAssocs();
-        $this->viewRender('admin/view' , $select);
+        $this->viewRender('admin/view', $select);
     }
+
     public function deletePage($id)
     {
         $select = $this->modelRender('Posts')->select()->where('id', '=', $id)->execute()->fetchAssocs();
-        $this->viewRender('admin/deletePost' , $select);
+        $this->viewRender('admin/deletePost', $select);
     }
+
     public function delete($id)
     {
-        if($this->modelRender('Posts')->delete()->where('id', '=', $id)->execute()) {
+        if ($this->modelRender('Posts')->delete()->where('id', '=', $id)->execute()) {
             redirect('admin/dashboard');
         }
     }
+
     public function updatePage($id)
     {
         $select = $this->modelRender('Posts')->select()->where('id', '=', $id)->execute()->fetchAssocs();
-        $this->viewRender('admin/updatePost' , $select);
+        $this->viewRender('admin/updatePost', $select);
     }
-    public function updatepost()
+
+    public function updatePost()
     {
         if (isset($_POST['updatePost'])) {
             $id = $_POST['id'];
@@ -69,10 +83,10 @@ class DashboardController extends Controller
                 $array['title'] = htmlspecialchars($_POST['title']);
                 $array['text'] = htmlspecialchars($_POST['text']);
                 $update = $this->modelRender('Posts')->update($array)->where('id', '=', $id)->execute();
-                if($update->queryResult) {
+                if ($update->queryResult) {
                     redirect('admin/Dashboard');
                 } else {
-                    $_SESSION['error_update_msg'] = 'Failied!';
+                    $_SESSION['error_update_msg'] = 'Failed!';
                     $url = 'admin/Dashboard/updatePage?' . $id;
                     var_dump($url);
                     exit;

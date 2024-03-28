@@ -7,6 +7,7 @@ class Controller
         require ('views/'.$view.'.php');
         require ('views/layouts/footer.php');
     }
+
     protected function modelRender($modelName)
     {
         require_once ('models/'.ucfirst($modelName).'.php');
