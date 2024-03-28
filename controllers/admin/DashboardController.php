@@ -23,12 +23,12 @@ class DashboardController extends Controller
                 if($insert->queryResult) {
                     redirect('admin/Dashboard');
                 } else {
-                    $_SESSION['error_msg'] = '<div class="msg msg-false" role="alert"><p class = "p5">Failied!</p></div>';
+                    $_SESSION['error_msg'] = 'Failied!';
                     redirect('admin/Dashboard/create');
                 }
                 unset($_POST);
             } else {
-                $_SESSION['error_msg'] = '<div class="msg msg-false" role="alert"><p class = "p5">Import all fields</p></div>';
+                $_SESSION['error_msg'] = 'Import all fields';
                 redirect('admin/Dashboard/create');
             }
         } else {
@@ -72,13 +72,13 @@ class DashboardController extends Controller
                 if($update->queryResult) {
                     redirect('admin/Dashboard');
                 } else {
-                    $_SESSION['error_update_msg'] = '<div class="msg msg-false" role="alert"><p class = "p5">Failied!</p></div>';
+                    $_SESSION['error_update_msg'] = 'Failied!';
                     $url = 'admin/Dashboard/updatePage?' . $id;
                     var_dump($url);
                     exit;
                 }
             } else {
-                $_SESSION['error_update_msg'] = '<div class="msg msg-false" role="alert"><p class = "p5">Import all fields</p></div>';
+                $_SESSION['error_update_msg'] = 'Import all fields';
                 $url = 'admin/Dashboard/updatePage?' . $id;
                 redirect($url);
             }

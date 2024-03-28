@@ -32,7 +32,11 @@
                             </div>
                         </div>
                     </form>
-                    <div id="msgLog"<?= (isset($_SESSION['msg_admin_login'])) ? $_SESSION['msg_admin_login'] : null ?></div>
+                    <div id="msgLog">
+                        <div class="msg msg-false" role="alert">
+                            <p class = "p5"><?= (isset($_SESSION['msg_admin_login'])) ? $_SESSION['msg_admin_login'] : null ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,7 +4,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="container mt-5" style = "width : 80%;">
-                        <?= (isset($_SESSION['error_update_msg'])) ? $_SESSION['error_update_msg'] : null; ?>
+                        <div class="msg msg-false" role="alert">
+                            <p class = "p5"><?= (isset($_SESSION['msg_update_login'])) ? $_SESSION['msg_admin_login'] : null ?></p>
+                        </div>
                         <form action="<?= DOM ?>admin/dashboard/updatepost" method="post" class="form-horizontal" enctype="multipart/form-data">
                             <div class="flex justify-content-around ">
                                 <div class="mb-3">
@@ -32,12 +34,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
-</div>
-
-<div id="addSlider_container" class="content-header">
-    <div class="container-fluid">
-
     </div>
 </div>

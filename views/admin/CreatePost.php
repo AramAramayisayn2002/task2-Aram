@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="container mt-5" style = "width : 40%;">
-                <?= (isset($_SESSION['error_msg'])) ? $_SESSION['error_msg'] : null; ?>
+                <div class="msg msg-false" role="alert">
+                    <p class = "p5"><?= (isset($_SESSION['error_msg'])) ? $_SESSION['msg_admin_login'] : null ?></p>
+                </div>
                 <form action="<?= DOM ?>admin/Dashboard/createpost" method="post" class="form-horizontal">
                     <div class="flex justify-content-around ">
                         <div class="mb-3">

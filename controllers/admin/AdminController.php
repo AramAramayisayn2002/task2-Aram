@@ -37,11 +37,11 @@ class AdminController extends Controller
                     }
                     redirect('admin/dashboard');
                 } else {
-                    $_SESSION['msg_admin_login'] = '<div class="msg msg-false" role="alert"><p class = "p5">False login and password</p></div>';
+                    $_SESSION['msg_admin_login'] = 'False login and password';
                     redirect('admin/admin');
                 }
             } else {
-                $_SESSION['msg_admin_login'] = '<div class="msg msg-false" role="alert"><p class = "p5">Import all fields</p></div>';
+                $_SESSION['msg_admin_login'] = 'Import all fields';
                 redirect('admin/admin');
             }
             unset($_POST);
